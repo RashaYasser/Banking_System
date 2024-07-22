@@ -1,0 +1,149 @@
+{
+    "Accounts": [
+        {
+            "Age": 24,
+            "Authentication": "Admin",
+            "Email": "farry.yasser@gmail.com",
+            "FullName": "Farida Yasser",
+            "Password": "pass123",
+            "UserName": "farry"
+        },
+        {
+            "AccountNumber": "1002",
+            "Age": 21,
+            "Authentication": "User",
+            "Balance": "2850.00",
+            "Email": "rasha.yasser@gmail.com",
+            "FullName": "Rasha Yasser",
+            "Password": "pass123",
+            "PhoneNumber": "01155559810",
+            "TransactionHistory": [
+                {
+                    "Amount": 200,
+                    "Timestamp": "Mon Jul 15 14:45:00 2024",
+                    "TransactionType": "Deposit"
+                },
+                {
+                    "Amount": 500,
+                    "Timestamp": "Mon Jul 15 15:00:00 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 200,
+                    "Timestamp": "Sat Jul 20 13:06:44 2024",
+                    "TransactionType": "Deposit"
+                },
+                {
+                    "Amount": 300,
+                    "Timestamp": "Sat Jul 20 13:32:10 2024",
+                    "TransactionType": "Deposit"
+                },
+                {
+                    "Amount": 300,
+                    "Timestamp": "Sat Jul 20 13:34:50 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 300,
+                    "Timestamp": "Sat Jul 20 13:34:51 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 900,
+                    "Timestamp": "Sat Jul 20 15:31:41 2024",
+                    "TransactionType": "Deposit"
+                },
+                {
+                    "Amount": 800,
+                    "Timestamp": "Sat Jul 20 15:32:46 2024",
+                    "TransactionType": "Deposit"
+                },
+                {
+                    "Amount": 600,
+                    "Timestamp": "Sat Jul 20 15:33:09 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 100,
+                    "Timestamp": "Sat Jul 20 18:13:02 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 80,
+                    "Timestamp": "Sat Jul 20 18:13:57 2024",
+                    "TransactionType": "Deposit"
+                },
+                {
+                    "Amount": 90,
+                    "Timestamp": "Sat Jul 20 18:20:15 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": "90",
+                    "Timestamp": "Mon Jul 22 11:16:22 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": "1000",
+                    "Timestamp": "Mon Jul 22 11:16:43 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": "50",
+                    "Timestamp": "Mon Jul 22 12:08:39 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": "100",
+                    "Timestamp": "Mon Jul 22 12:08:48 2024",
+                    "TransactionType": "Deposit"
+                }
+            ],
+            "UserName": "rasha"
+        },
+        {
+            "AccountNumber": "1003",
+            "Age": 30,
+            "Authentication": "User",
+            "Balance": "8810.00",
+            "Email": "asha@gmail.com",
+            "FullName": "Asha",
+            "Password": "123456",
+            "PhoneNumber": "0123456789",
+            "TransactionHistory": [
+                {
+                    "Amount": 200,
+                    "Timestamp": "Mon Jul 15 14:45:00 2024",
+                    "TransactionType": "Deposit"
+                },
+                {
+                    "Amount": 500,
+                    "Timestamp": "Mon Jul 15 15:00:00 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 900,
+                    "Timestamp": "Sat Jul 20 15:31:17 2024",
+                    "TransactionType": "Deposit"
+                },
+                {
+                    "Amount": 90,
+                    "Timestamp": "Sat Jul 20 18:20:27 2024",
+                    "TransactionType": "Withdrawal"
+                }
+            ],
+            "UserName": "rashayasser"
+        },
+        {
+            "AccountNumber": "10001",
+            "Age": 25,
+            "Authentication": "User",
+            "Balance": "0.00",
+            "Email": "aasada@gmail.com",
+            "FullName": "Ahmed Mohamed",
+            "Password": "123456",
+            "PhoneNumber": "012455525",
+            "UserName": "ahmed"
+        }
+    ]
+}
