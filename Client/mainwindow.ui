@@ -245,7 +245,7 @@ background-color: rgb(1, 71, 131);</string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>461</x>
@@ -956,13 +956,6 @@ color: rgb(221, 221, 221);</string>
             <string>User</string>
            </property>
           </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="LE_authentication">
-          <property name="placeholderText">
-           <string>Authentication(Admin or User)</string>
-          </property>
          </widget>
         </item>
         <item>

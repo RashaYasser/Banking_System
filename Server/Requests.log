@@ -1,93 +1,270 @@
-Action:[login]
- Request:{"Action":"login","Password":"pass1234","UserName":"rasha"}
-, Date: 2024-07-22T10:56:03
-Action:[login]
- Request:{"Action":"login","Password":"pass123","UserName":"rasha"}
-, Date: 2024-07-22T10:56:07
-Action:[viewBalance]
- Request:{"AccountNumber":"1002","Action":"viewBalance","UserName":"rasha"}
-, Date: 2024-07-22T10:56:31
-Action:[viewBalance]
- Request:{"AccountNumber":"1002","Action":"viewBalance","UserName":"rasha"}
-, Date: 2024-07-22T10:57:15
-Action:[login]
- Request:{"Action":"login","Password":"pass1234","UserName":"rasha"}
-, Date: 2024-07-22T11:14:04
-Action:[login]
- Request:{"Action":"login","Password":"pass123","UserName":"rasha"}
-, Date: 2024-07-22T11:14:09
-Action:[viewBalance]
- Request:{"AccountNumber":"1002","Action":"viewBalance","UserName":"rasha"}
-, Date: 2024-07-22T11:14:34
-Action:[makeTransaction]
- Request:{"AccountNumber":"1002","Action":"makeTransaction","Amount":"90","Timestamp":"Mon Jul 22 11:16:22 2024","TransactionType":"Withdrawal","UserName":"rasha"}
-, Date: 2024-07-22T11:16:22
-Action:[makeTransaction]
- Request:{"AccountNumber":"1002","Action":"makeTransaction","Amount":"1000","Timestamp":"Mon Jul 22 11:16:43 2024","TransactionType":"Withdrawal","UserName":"rasha"}
-, Date: 2024-07-22T11:16:43
-Action:[viewAccountDetails]
- Request:{"AccountNumber":"1003","Action":"viewAccountDetails","UserName":"rasha"}
-, Date: 2024-07-22T11:17:04
-Action:[viewAccountDetails]
- Request:{"AccountNumber":"1003","Action":"viewAccountDetails","UserName":"rasha"}
-, Date: 2024-07-22T11:17:07
-Action:[viewAccountDetails]
- Request:{"AccountNumber":"1002","Action":"viewAccountDetails","UserName":"rasha"}
-, Date: 2024-07-22T11:17:16
-Action:[viewTransactionHistory]
- Request:{"AccountNumber":"1002","Action":"viewTransactionHistory","AdminUsername":""}
-, Date: 2024-07-22T11:17:42
-Action:[login]
- Request:{"Action":"login","Password":"pass123","UserName":"farry"}
-, Date: 2024-07-22T11:17:58
-Action:[createUser]
- Request:{"Action":"createUser","Age":"12","Authentication":"Admin","Balance":"12","Email":"ahmed@gmail.com","FullName":"ahmed adel","Password":"123456","PhoneNumber":"11111111111111111","UserName":"ahmed8"}
-, Date: 2024-07-22T11:19:33
-Action:[createUser]
- Request:{"Action":"createUser","Age":"12","Authentication":"Admin","Balance":"12.0","Email":"ahmed@gmail.com","FullName":"ahmed adel","Password":"123456","PhoneNumber":"11111111111111111","UserName":"ahmed8"}
-, Date: 2024-07-22T11:19:51
-Action:[createUser]
- Request:{"Action":"createUser","Age":"12","Authentication":"User","Balance":"12.0","Email":"ahmed@gmail.com","FullName":"ahmed adel","Password":"123456","PhoneNumber":"11111111111111111","UserName":"ahmed8"}
-, Date: 2024-07-22T11:20:07
-Action:[createUser]
- Request:{"Action":"createUser","Age":"12","Authentication":"User","Balance":"12.00","Email":"ahmed@gmail.com","FullName":"ahmed adel","Password":"123456","PhoneNumber":"11111111111111111","UserName":"ahmed88"}
-, Date: 2024-07-22T11:20:19
-Action:[deleteUser]
- Request:{"AccountNumber":"10002","Action":"deleteUser"}
-, Date: 2024-07-22T11:22:16
-Action:[deleteUser]
- Request:{"AccountNumber":"10003","Action":"deleteUser"}
-, Date: 2024-07-22T11:22:25
-Action:[getAccountNumberAdmin]
- Request:{"Action":"getAccountNumberAdmin","Authentication":"Admin","UserName":"ahmed"}
-, Date: 2024-07-22T11:22:33
-Action:[getAccountNumberAdmin]
- Request:{"Action":"getAccountNumberAdmin","Authentication":"Admin","UserName":"rasha"}
-, Date: 2024-07-22T11:22:38
-Action:[viewTransactionHistory]
- Request:{"AccountNumber":"1002","Action":"viewTransactionHistory","AdminUsername":"farry"}
-, Date: 2024-07-22T11:22:51
-Action:[viewBankDatabase]
- Request:{"Action":"viewBankDatabase","Authentication":"Admin"}
-, Date: 2024-07-22T11:23:00
-Action:[login]
- Request:{"Action":"login","Password":"pass123","UserName":"rasha"}
-, Date: 2024-07-22T12:06:30
-Action:[viewBalance]
- Request:{"AccountNumber":"1002","Action":"viewBalance","UserName":"rasha"}
-, Date: 2024-07-22T12:07:04
-Action:[makeTransaction]
- Request:{"AccountNumber":"1002","Action":"makeTransaction","Amount":"50","Timestamp":"Mon Jul 22 12:08:39 2024","TransactionType":"Withdrawal","UserName":"rasha"}
-, Date: 2024-07-22T12:08:39
-Action:[makeTransaction]
- Request:{"AccountNumber":"1002","Action":"makeTransaction","Amount":"100","Timestamp":"Mon Jul 22 12:08:48 2024","TransactionType":"Deposit","UserName":"rasha"}
-, Date: 2024-07-22T12:08:48
-Action:[viewAccountDetails]
- Request:{"AccountNumber":"1002","Action":"viewAccountDetails","UserName":"rasha"}
-, Date: 2024-07-22T12:08:55
-Action:[viewTransactionHistory]
- Request:{"AccountNumber":"1002","Action":"viewTransactionHistory","AdminUsername":""}
-, Date: 2024-07-22T12:09:04
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"farry"}
+Date: 2024-07-29T17:57:55
+Action: [viewAccountDetails]
+Request: {"AccountNumber":"1002","Action":"viewAccountDetails","AdminUsername":"farry"}
+Date: 2024-07-29T17:58:25
+Action: [viewTransactionHistory]
+Request: {"AccountNumber":"1003","Action":"viewTransactionHistory","AdminUsername":"farry"}
+Date: 2024-07-29T17:58:53
+Action: [viewTransactionHistory]
+Request: {"AccountNumber":"1003","Action":"viewTransactionHistory","AdminUsername":"farry"}
+Date: 2024-07-29T17:58:55
 Action: [login]
 Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
-Date: 2024-07-22T20:47:38
+Date: 2024-07-29T18:54:29
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-29T18:56:00
+Action: [getAccountNumberUser]
+Request: {"Action":"getAccountNumberUser","UserName":"rasha"}
+Date: 2024-07-29T18:56:17
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-29T19:04:07
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-29T19:26:31
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"80","Recipient":"1003","Sender":"1002","Timestamp":"Mon Jul 29 19:27:04 2024"}
+Date: 2024-07-29T19:27:04
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-29T20:08:49
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"10","Recipient":"1003","Sender":"1002","Timestamp":"Mon Jul 29 20:09:50 2024"}
+Date: 2024-07-29T20:09:50
+Action: [getAccountNumberUser]
+Request: {"Action":"getAccountNumberUser","UserName":"rasha"}
+Date: 2024-07-29T20:10:12
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-29T20:14:15
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-30T03:17:18
+Action: [getAccountNumberUser]
+Request: {"Action":"getAccountNumberUser","UserName":"rasha"}
+Date: 2024-07-30T03:17:40
+Action: [viewBalance]
+Request: {"AccountNumber":"1002","Action":"viewBalance","UserName":"rasha"}
+Date: 2024-07-30T03:17:56
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"50","Recipient":"1003","Sender":"1002","Timestamp":"Tue Jul 30 03:18:13 2024"}
+Date: 2024-07-30T03:18:13
+Action: [makeTransaction]
+Request: {"AccountNumber":"1002","Action":"makeTransaction","Amount":"88","Timestamp":"Tue Jul 30 03:18:31 2024","TransactionType":"Withdrawal","UserName":"rasha"}
+Date: 2024-07-30T03:18:31
+Action: [makeTransaction]
+Request: {"AccountNumber":"1002","Action":"makeTransaction","Amount":"90","Timestamp":"Tue Jul 30 03:18:48 2024","TransactionType":"Withdrawal","UserName":"rasha"}
+Date: 2024-07-30T03:18:48
+Action: [viewAccountDetails]
+Request: {"AccountNumber":"1002","Action":"viewAccountDetails","UserName":"rasha"}
+Date: 2024-07-30T03:18:57
+Action: [viewTransactionHistory]
+Request: {"AccountNumber":"1002","Action":"viewTransactionHistory","AdminUsername":""}
+Date: 2024-07-30T03:19:09
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-30T03:25:27
+Action: [viewAccountDetails]
+Request: {"AccountNumber":"1002","Action":"viewAccountDetails","UserName":"rasha"}
+Date: 2024-07-30T03:25:40
+Action: [viewTransactionHistory]
+Request: {"AccountNumber":"1002","Action":"viewTransactionHistory","AdminUsername":""}
+Date: 2024-07-30T03:26:04
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-30T03:38:25
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"30","Recipient":"1003","Sender":"1002","Timestamp":"Tue Jul 30 03:38:40 2024"}
+Date: 2024-07-30T03:38:40
+Action: [makeTransaction]
+Request: {"AccountNumber":"1002","Action":"makeTransaction","Amount":"10","Timestamp":"Tue Jul 30 03:38:58 2024","TransactionType":"Withdrawal","UserName":"rasha"}
+Date: 2024-07-30T03:38:58
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-30T03:50:00
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"9","Recipient":"1003","Sender":"1002","Timestamp":"Tue Jul 30 03:50:24 2024"}
+Date: 2024-07-30T03:50:24
+Action: [login]
+Request: {"Action":"login","Password":"pass12","UserName":"rasha"}
+Date: 2024-07-30T03:58:12
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-30T03:58:23
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"55","Recipient":"1003","Sender":"1002","Timestamp":"Tue Jul 30 03:58:37 2024"}
+Date: 2024-07-30T03:58:37
+Action: [makeTransaction]
+Request: {"AccountNumber":"1002","Action":"makeTransaction","Amount":"96","Timestamp":"Tue Jul 30 03:59:40 2024","TransactionType":"Withdrawal","UserName":"rasha"}
+Date: 2024-07-30T03:59:40
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-30T04:06:10
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"96","Recipient":"1003","Sender":"1002","Timestamp":"Tue Jul 30 04:06:54 2024"}
+Date: 2024-07-30T04:06:54
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-30T04:15:53
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"5","Recipient":"1003","Sender":"1002","Timestamp":"Tue Jul 30 04:16:09 2024"}
+Date: 2024-07-30T04:16:09
+Action: [makeTransaction]
+Request: {"AccountNumber":"1002","Action":"makeTransaction","Amount":"95","Timestamp":"Tue Jul 30 04:16:43 2024","TransactionType":"Withdrawal","UserName":"rasha"}
+Date: 2024-07-30T04:16:43
+Action: [getAccountNumberUser]
+Request: {"Action":"getAccountNumberUser","UserName":"rasha"}
+Date: 2024-07-30T04:17:09
+Action: [viewBalance]
+Request: {"AccountNumber":"1002","Action":"viewBalance","UserName":"rasha"}
+Date: 2024-07-30T04:17:18
+Action: [makeTransaction]
+Request: {"AccountNumber":"1002","Action":"makeTransaction","Amount":"195","Timestamp":"Tue Jul 30 04:17:54 2024","TransactionType":"Withdrawal","UserName":"rasha"}
+Date: 2024-07-30T04:17:54
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-30T04:27:05
+Action: [makeTransaction]
+Request: {"AccountNumber":"1002","Action":"makeTransaction","Amount":"5","Timestamp":"Tue Jul 30 04:27:18 2024","TransactionType":"Withdrawal","UserName":"rasha"}
+Date: 2024-07-30T04:27:18
+Action: [makeTransaction]
+Request: {"AccountNumber":"1002","Action":"makeTransaction","Amount":"95","Timestamp":"Tue Jul 30 04:31:01 2024","TransactionType":"Deposit","UserName":"rasha"}
+Date: 2024-07-30T04:31:01
+Action: [login]
+Request: {"Action":"login","Password":"123456","UserName":"rashayasser"}
+Date: 2024-07-30T04:34:20
+Action: [makeTransaction]
+Request: {"AccountNumber":"1003","Action":"makeTransaction","Amount":"465","Timestamp":"Tue Jul 30 04:34:44 2024","TransactionType":"Withdrawal","UserName":"rashayasser"}
+Date: 2024-07-30T04:34:44
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"90","Recipient":"1002","Sender":"1003","Timestamp":"Tue Jul 30 04:35:21 2024"}
+Date: 2024-07-30T04:35:21
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"10","Recipient":"1002","Sender":"1003","Timestamp":"Tue Jul 30 04:36:01 2024"}
+Date: 2024-07-30T04:36:01
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-30T04:41:25
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"200","Recipient":"1003","Sender":"1002","Timestamp":"Tue Jul 30 04:41:41 2024"}
+Date: 2024-07-30T04:41:41
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-30T04:47:21
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"20","Recipient":"1003","Sender":"1002","Timestamp":"Tue Jul 30 04:47:37 2024"}
+Date: 2024-07-30T04:47:37
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-30T04:52:18
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"222","Recipient":"1003","Sender":"1002","Timestamp":"Tue Jul 30 04:52:33 2024"}
+Date: 2024-07-30T04:52:33
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"788","Recipient":"1003","Sender":"1002","Timestamp":"Tue Jul 30 04:53:04 2024"}
+Date: 2024-07-30T04:53:04
+Action: [makeTransaction]
+Request: {"AccountNumber":"1002","Action":"makeTransaction","Amount":"90","Timestamp":"Tue Jul 30 04:54:01 2024","TransactionType":"Withdrawal","UserName":"rasha"}
+Date: 2024-07-30T04:54:01
+Action: [viewBalance]
+Request: {"AccountNumber":"1002","Action":"viewBalance","UserName":"rasha"}
+Date: 2024-07-30T04:54:25
+Action: [getAccountNumberUser]
+Request: {"Action":"getAccountNumberUser","UserName":"rasha"}
+Date: 2024-07-30T04:54:36
+Action: [viewAccountDetails]
+Request: {"AccountNumber":"1002","Action":"viewAccountDetails","UserName":"rasha"}
+Date: 2024-07-30T04:54:48
+Action: [viewTransactionHistory]
+Request: {"AccountNumber":"1002","Action":"viewTransactionHistory","AdminUsername":""}
+Date: 2024-07-30T04:54:56
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-30T14:13:00
+Action: [getAccountNumberUser]
+Request: {"Action":"getAccountNumberUser","UserName":"rasha"}
+Date: 2024-07-30T14:13:17
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"50","Recipient":"1003","Sender":"1002","Timestamp":"Tue Jul 30 14:13:54 2024"}
+Date: 2024-07-30T14:13:54
+Action: [makeTransaction]
+Request: {"AccountNumber":"1002","Action":"makeTransaction","Amount":"100","Timestamp":"Tue Jul 30 14:14:22 2024","TransactionType":"Withdrawal","UserName":"rasha"}
+Date: 2024-07-30T14:14:22
+Action: [viewTransactionHistory]
+Request: {"AccountNumber":"1002","Action":"viewTransactionHistory","AdminUsername":""}
+Date: 2024-07-30T14:14:44
+Action: [viewAccountDetails]
+Request: {"AccountNumber":"1002","Action":"viewAccountDetails","UserName":"rasha"}
+Date: 2024-07-30T14:15:02
+Action: [viewAccountDetails]
+Request: {"AccountNumber":"1003","Action":"viewAccountDetails","UserName":"rasha"}
+Date: 2024-07-30T14:15:07
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"farry"}
+Date: 2024-07-30T14:15:22
+Action: [createUser]
+Request: {"Action":"createUser","Age":"20","Authentication":"User","Balance":"55555","Email":"adel@gmail.com","FullName":"Adel Mohamed","Password":"1234565","PhoneNumber":"01133333333333333333","UserName":"adel"}
+Date: 2024-07-30T14:16:21
+Action: [getAccountNumberAdmin]
+Request: {"Action":"getAccountNumberAdmin","Authentication":"Admin","UserName":""}
+Date: 2024-07-30T14:16:49
+Action: [deleteUser]
+Request: {"AccountNumber":"10002","Action":"deleteUser"}
+Date: 2024-07-30T14:17:03
+Action: [updateUser]
+Request: {"AccountNumber":"10003","Action":"updateUser","Password":"pass123","UserName":"adel123"}
+Date: 2024-07-30T14:17:42
+Action: [deleteUser]
+Request: {"AccountNumber":"10003","Action":"deleteUser"}
+Date: 2024-07-30T14:17:50
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"rasha"}
+Date: 2024-07-30T15:25:06
+Action: [getAccountNumberUser]
+Request: {"Action":"getAccountNumberUser","UserName":"rasha"}
+Date: 2024-07-30T15:25:29
+Action: [viewBalance]
+Request: {"AccountNumber":"1002","Action":"viewBalance","UserName":"rasha"}
+Date: 2024-07-30T15:25:43
+Action: [transferAmount]
+Request: {"Action":"transferAmount","Amount":"50","Recipient":"1003","Sender":"1002","Timestamp":"Tue Jul 30 15:27:06 2024"}
+Date: 2024-07-30T15:27:06
+Action: [makeTransaction]
+Request: {"AccountNumber":"1002","Action":"makeTransaction","Amount":"10","Timestamp":"Tue Jul 30 15:27:50 2024","TransactionType":"Withdrawal","UserName":"rasha"}
+Date: 2024-07-30T15:27:50
+Action: [makeTransaction]
+Request: {"AccountNumber":"1002","Action":"makeTransaction","Amount":"80","Timestamp":"Tue Jul 30 15:28:02 2024","TransactionType":"Deposit","UserName":"rasha"}
+Date: 2024-07-30T15:28:02
+Action: [viewAccountDetails]
+Request: {"AccountNumber":"1002","Action":"viewAccountDetails","UserName":"rasha"}
+Date: 2024-07-30T15:28:16
+Action: [viewAccountDetails]
+Request: {"AccountNumber":"1003","Action":"viewAccountDetails","UserName":"rasha"}
+Date: 2024-07-30T15:28:24
+Action: [viewTransactionHistory]
+Request: {"AccountNumber":"1002","Action":"viewTransactionHistory","AdminUsername":""}
+Date: 2024-07-30T15:28:46
+Action: [login]
+Request: {"Action":"login","Password":"pass123","UserName":"farry"}
+Date: 2024-07-30T15:29:06
+Action: [createUser]
+Request: {"Action":"createUser","Age":"20","Authentication":"User","Balance":"22232","Email":"sas@gmail.com","FullName":"Mohand Ahmed","Password":"2212","PhoneNumber":"011111111","UserName":"rasha"}
+Date: 2024-07-30T15:30:17
+Action: [createUser]
+Request: {"Action":"createUser","Age":"5","Authentication":"User","Balance":"225","Email":"sdzc","FullName":"Mohamed ahmemf","Password":"dfvgfd","PhoneNumber":"02323","UserName":"sdfxsd"}
+Date: 2024-07-30T15:30:45
+Action: [deleteUser]
+Request: {"AccountNumber":"10003","Action":"deleteUser"}
+Date: 2024-07-30T15:31:06
+Action: [deleteUser]
+Request: {"AccountNumber":"1003","Action":"deleteUser"}
+Date: 2024-07-30T15:31:14
+Action: [getAccountNumberAdmin]
+Request: {"Action":"getAccountNumberAdmin","Authentication":"Admin","UserName":"rasha"}
+Date: 2024-07-30T15:31:23
+Action: [viewBankDatabase]
+Request: {"Action":"viewBankDatabase","Authentication":"Admin"}
+Date: 2024-07-30T15:32:06

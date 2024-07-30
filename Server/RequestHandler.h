@@ -16,6 +16,20 @@ public:
     virtual QJsonObject handle(const QJsonObject &request, DataBaseManager &dbManager) = 0;
 };
 
+// Manages the response based on the action
+class ReceivedResponseHandler
+{
+public:
+    // Constructor to initialize the appropriate handler based on action
+    ReceivedResponseHandler(const QString &action);
+    // Handles the response by delegating to the appropriate handler
+    QJsonObject handleResponse(const QJsonObject &request, DataBaseManager &dbManager);
+
+private:
+    RequestHandler *handler; // Pointer to the appropriate RequestHandler
+};
+
+
 // Handler for login requests
 class LoginHandler : public RequestHandler
 {
@@ -99,19 +113,6 @@ class GetAccountNumberUserHandler : public RequestHandler
 {
 public:
     QJsonObject handle(const QJsonObject &request, DataBaseManager &dbManager) override;
-};
-
-// Manages the response based on the action
-class ReceivedResponseHandler
-{
-public:
-    // Constructor to initialize the appropriate handler based on action
-    ReceivedResponseHandler(const QString &action);
-    // Handles the response by delegating to the appropriate handler
-    QJsonObject handleResponse(const QJsonObject &request, DataBaseManager &dbManager);
-
-private:
-    RequestHandler *handler; // Pointer to the appropriate RequestHandler
 };
 
 

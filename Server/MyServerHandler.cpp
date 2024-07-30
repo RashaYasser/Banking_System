@@ -4,6 +4,7 @@
 #include <QTextStream>
 #include <QDateTime>
 #include <QDebug>
+#include <QProcess>//for sending email
 
 MyServerHandler::MyServerHandler(int ID, QObject *parent)
     : QThread(parent), id(ID), socket(nullptr), databaseManager(DataBaseManager::getInstance()) // Use Singleton instance
@@ -38,10 +39,9 @@ void MyServerHandler::sendResponse(const QJsonObject &response)
     }
 }
 
-
 void MyServerHandler::logRequest(const QString &action, const QJsonObject &request)
 {
-    QString logFilePath = "D:\\ITIDA_FINAL_PROJECT3\\Server\\Requests.log"; // Define the path to the log file
+    QString logFilePath = "E:\\ITIDA_FINAL_PROJECT3\\Server\\Requests.log"; // Define the path to the log file
     QFile logFile(logFilePath); // Create a QFile object with the specified path
     if (!logFile.open(QIODevice::Append | QIODevice::Text)) // Open the file in append mode for text
     {
@@ -80,24 +80,61 @@ void MyServerHandler::run()
     exec();//1-start event loop(This is a member function for QThread ) 2-write Qt::DirectConnection);
 }
 
+//Recive Request and send Response
 void MyServerHandler::onReadyRead()
 {
+    QByteArray receivedData = socket->readAll();
 
-    // Read all available data from the socket
-    QByteArray data = socket->readAll();
+    // The last 32 bytes are the signature
+    QByteArray receivedSignature = receivedData.right(32);
+    // The rest is the encrypted data
+    QByteArray encryptedData = receivedData.left(receivedData.size() - 32);
 
-    // Parse the data into a QJsonDocument
-    QJsonDocument requestDoc = QJsonDocument::fromJson(data);
+    // Verify the signature
+    if (!Signature::verify(encryptedData, receivedSignature, "SecretSignatureKey"))
+    {
+        qDebug() << "Signature verification failed!";
+        return;
+    }
 
-    // Extract the JSON object from the document
-    QJsonObject request = requestDoc.object();
+    // Decrypt the data
+    QJsonObject request = Encryption::decrypt(encryptedData, "SecretEncryptionKey");
 
-    // Prepare a response JSON object
+    // Handle the request
     QJsonObject response = handleRequest(request);
     sendResponse(response);
-
 }
 
+void MyServerHandler::sendEmail(const QString& toEmail, const QString& subject, const QString& body)
+{
+    QProcess process;  // Create a QProcess object to manage the external process
+    QString program = "python"; // The command to run the Python interpreter
+    QStringList arguments; // Arguments to pass to the Python script
+
+    // Path to the Python script and arguments to be passed
+    arguments << "E:\\ITIDA_FINAL_PROJECT3\\Server\\send_email.py" << toEmail << subject << body;
+
+    // Start the external process with the specified command and arguments
+    process.start(program, arguments);
+
+    // Wait for the process to finish executing
+    process.waitForFinished();
+
+    // Read the standard output and error from the process
+    QString result(process.readAllStandardOutput());
+    QString error(process.readAllStandardError());
+
+    // Check if there was any error and print it
+    if (!error.isEmpty())
+    {
+        qDebug() << "Error:" << error;
+    }
+    else
+    {
+        // Print the result if the process completed successfully
+        qDebug() << "Result:" << result;
+    }
+}
 
 void MyServerHandler::onDisconnect()
 {
@@ -110,8 +147,23 @@ void MyServerHandler::onDisconnect()
 
 QJsonObject MyServerHandler::handleRequest(const QJsonObject &request)
 {
+
     logRequest(request["Action"].toString(), request);
     QString action = request["Action"].toString();
     ReceivedResponseHandler handler(action);
-    return handler.handleResponse(request, databaseManager);
+
+    // Get the response
+    QJsonObject response = handler.handleResponse(request, databaseManager);
+
+    // Extract the account number from the request to get the email
+    QString accountNumber = request["AccountNumber"].toString();
+    QString clientEmail = databaseManager.getUserEmail(accountNumber);
+
+    // Send an email with the response
+    QString emailSubject = "Response to Your Request";
+    QString emailBody = QString("Dear User,\n\nYour request was processed. Here are the details:\n%1")
+                            .arg(QString(QJsonDocument(response).toJson(QJsonDocument::Indented)));
+    sendEmail(clientEmail, emailSubject, emailBody);
+
+    return response;
 }

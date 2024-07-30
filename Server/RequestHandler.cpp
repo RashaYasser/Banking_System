@@ -80,7 +80,6 @@ QJsonObject ReceivedResponseHandler::handleResponse(const QJsonObject &request, 
     }
 }
 
-
 // Handles login requests
 QJsonObject LoginHandler::handle(const QJsonObject &request, DataBaseManager &dbManager)
 {
@@ -94,6 +93,8 @@ QJsonObject LoginHandler::handle(const QJsonObject &request, DataBaseManager &db
         response["Status"] = "Success";
         response["UserName"] = username;
         response["Authentication"] = user["Authentication"].toString();
+        response["AccountNumber"] = dbManager.getAccountNumber(username);
+
         response["Message"] = "Login Successful Welcome,";
 
     }
@@ -124,7 +125,7 @@ QJsonObject CreateUserHandler::handle(const QJsonObject &request, DataBaseManage
     newUser["FullName"] = request["FullName"].toString();
     newUser["UserName"] = request["UserName"].toString();
     newUser["Password"] = request["Password"].toString();
-    newUser["Balance"] = request["Balance"].toDouble();
+    newUser["Balance"] = request["Balance"].toString();
     newUser["Email"] = request["Email"].toString();
     newUser["PhoneNumber"] = request["PhoneNumber"].toString();
     newUser["Authentication"] = request["Authentication"].toString();
@@ -173,29 +174,26 @@ QJsonObject UpdateUserHandler::handle(const QJsonObject &request, DataBaseManage
         return response;
     }
 
-    // Prepare the update object with existing data
-    QJsonObject updatedUser = existingUser;
-
-    // Update the fields with new data from the request if present
+    // Update only the fields provided in the request
     if (request.contains("UserName"))
     {
-        updatedUser["UserName"] = request["UserName"].toString();
+        existingUser["UserName"] = request["UserName"].toString();
     }
     if (request.contains("Password"))
     {
-        updatedUser["Password"] = request["Password"].toString();
+        existingUser["Password"] = request["Password"].toString();
     }
     if (request.contains("Email"))
     {
-        updatedUser["Email"] = request["Email"].toString();
+        existingUser["Email"] = request["Email"].toString();
     }
     if (request.contains("PhoneNumber"))
     {
-        updatedUser["PhoneNumber"] = request["PhoneNumber"].toString();
+        existingUser["PhoneNumber"] = request["PhoneNumber"].toString();
     }
 
     // Update user in the database
-    bool success = dbManager.updateUser(accountNumber, updatedUser);
+    bool success = dbManager.updateUser(accountNumber, existingUser);
 
     response["Status"] = success ? "Success" : "Failure";
     response["Action"] = "updateUser";
@@ -247,21 +245,7 @@ QJsonObject TransferAmountHandler::handle(const QJsonObject &request, DataBaseMa
     QString amountStr = request["Amount"].toString();
     QString timestamp = request["Timestamp"].toString();
 
-    bool ok;
-    double amount = amountStr.toDouble(&ok);
-    if (!ok || amount <= 0)
-    {
-        response["Status"] = "Failure";
-        response["Message"] = "Invalid amount.";
-        response["Action"] = "transferAmount";
-        return response;
-    }
-
-    // Check if both sender and recipient exist
-    QJsonObject senderAccount = dbManager.getUser(sender);
-    QJsonObject recipientAccount = dbManager.getUser(recipient);
-
-    if (senderAccount.isEmpty())
+    if (sender.isEmpty())
     {
         response["Status"] = "Failure";
         response["Message"] = "Sender account not found.";
@@ -269,7 +253,7 @@ QJsonObject TransferAmountHandler::handle(const QJsonObject &request, DataBaseMa
         return response;
     }
 
-    if (recipientAccount.isEmpty())
+    if (recipient.isEmpty())
     {
         response["Status"] = "Failure";
         response["Message"] = "Recipient account not found.";
@@ -278,7 +262,7 @@ QJsonObject TransferAmountHandler::handle(const QJsonObject &request, DataBaseMa
     }
 
     // Perform the transaction
-    bool transferResult = dbManager.transferAmount(sender, recipient, amount);
+    bool transferResult = dbManager.transferAmount(sender, recipient, amountStr);
     if (!transferResult)
     {
         response["Status"] = "Failure";
@@ -519,7 +503,7 @@ QJsonObject MakeTransactionHandler::handle(const QJsonObject &request, DataBaseM
 
     // Create a transaction object
     QJsonObject transaction;
-    transaction["Amount"] = amountStr;
+    transaction["Amount"] = amount;
     transaction["TransactionType"] = action;
     transaction["Timestamp"] = timestamp;
 

@@ -53,17 +53,24 @@ void MyClient::Disconnect()
         socket.close();
     }
 }
-
-// Sends JSON data to the server.
-void MyClient::sendData(const QJsonObject &data)
+void MyClient::sendData(const QByteArray& data)
 {
-    // Convert the JSON object to a QJsonDocument
-    QJsonDocument doc(data);
-    // Convert the QJsonDocument to a QByteArray in compact format
-    QByteArray byteArray = doc.toJson(QJsonDocument::Compact);
-    // Write the byteArray to the socket
-    socket.write(byteArray);
+    if (socket.state() == QTcpSocket::ConnectedState)
+    {
+        qint64 bytesWritten = socket.write(data);
+
+        if (bytesWritten == -1)
+        {
+            qDebug() << "Failed to write data to socket:" << socket.errorString();
+        }
+
+    }
+    else
+    {
+        qDebug() << "Socket is not connected!";
+    }
 }
+
 
 // Slot called when the connection to the server is successfully established.
 void MyClient::onConnected()

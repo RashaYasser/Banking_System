@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     CreateNewUserRequest.cpp \
     DeleteUserRequest.cpp \
+    Encryption.cpp \
     GetAccountNumberAdminRequest.cpp \
     GetAccountNumberUserRequest.cpp \
     LoginRequest.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
     Request.cpp \
     RequestValidator.cpp \
     ResponseHandler.cpp \
+    Signature.cpp \
     TransferAmountRequest.cpp \
     UpdateUserRequest.cpp \
     ViewAccountDetailsRequest.cpp \
@@ -31,6 +33,7 @@ SOURCES += \
 HEADERS += \
     CreateNewUserRequest.h \
     DeleteUserRequest.h \
+    Encryption.h \
     GetAccountNumberAdminRequest.h \
     GetAccountNumberUserRequest.h \
     LoginRequest.h \
@@ -39,6 +42,7 @@ HEADERS += \
     Request.h \
     RequestValidator.h \
     ResponseHandler.h \
+    Signature.h \
     TransferAmountRequest.h \
     UpdateUserRequest.h \
     ViewAccountDetailsRequest.h \

@@ -1,0 +1,11 @@
+release/DataBaseManager.o
+release/Encryption.o
+release/Memento.o
+release/MyServer.o
+release/MyServerHandler.o
+release/RequestHandler.o
+release/Signature.o
+release/main.o
+release/moc_DataBaseManager.o
+release/moc_MyServer.o
+release/moc_MyServerHandler.o

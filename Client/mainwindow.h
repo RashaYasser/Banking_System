@@ -314,18 +314,6 @@ private slots:
 
     void on_comboBox_11_activated(int index);
 
-
-
-
-
-
-
-
-
-
-    ////////////////////////////////////////////////////////////////////////////////////////////
-    /// \brief client
-    ///
 public:
     /************************** Display Methods **********************************/
 
@@ -407,6 +395,7 @@ public:
      * This method determines whether the logged-in user has admin privileges.
      */
     bool isAdmin() const;
+    void logTransfer(const QString &fromAccountNumber, const QString &toAccountNumber, const QString &amount);
 
 private:
     Ui::MainWindow *ui; // UI object for the main window

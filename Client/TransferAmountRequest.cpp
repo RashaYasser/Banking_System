@@ -2,7 +2,7 @@
 
 TransferAmountRequest::TransferAmountRequest(const QString& sender,
                                              const QString& recipient,
-                                             double amount)
+                                             QString  amount)
     : m_sender(sender),
     m_recipient(recipient),
     m_amount(amount),
@@ -17,7 +17,7 @@ QJsonObject TransferAmountRequest::toJson() const
     request["Action"] = "transferAmount";
     request["Sender"] = m_sender; // Use currentUser as the sender
     request["Recipient"] = m_recipient; // Recipient is provided as a parameter
-    request["Amount"] = m_amount; // Ensure amount is correctly formatted as a string
+    request["Amount"] = m_amount;
     request["Timestamp"] = m_timestamp;
     return request;
 

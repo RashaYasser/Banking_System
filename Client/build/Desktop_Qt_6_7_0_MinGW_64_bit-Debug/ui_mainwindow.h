@@ -49,7 +49,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QLabel *label_8;
     QLineEdit *lE_IP;
-    QWidget *widget1;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *PB_Connect;
     QPushButton *PB_Disconnect;
@@ -237,13 +237,13 @@ public:
 
         horizontalLayout->addWidget(lE_IP);
 
-        widget1 = new QWidget(widget);
-        widget1->setObjectName("widget1");
-        widget1->setGeometry(QRect(461, 81, 241, 31));
-        horizontalLayout_3 = new QHBoxLayout(widget1);
+        layoutWidget = new QWidget(widget);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(461, 81, 241, 31));
+        horizontalLayout_3 = new QHBoxLayout(layoutWidget);
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        PB_Connect = new QPushButton(widget1);
+        PB_Connect = new QPushButton(layoutWidget);
         PB_Connect->setObjectName("PB_Connect");
         PB_Connect->setStyleSheet(QString::fromUtf8("font: 12pt \"Segoe UI\";\n"
 "background-color: rgb(0, 139, 0);\n"
@@ -251,7 +251,7 @@ public:
 
         horizontalLayout_3->addWidget(PB_Connect);
 
-        PB_Disconnect = new QPushButton(widget1);
+        PB_Disconnect = new QPushButton(layoutWidget);
         PB_Disconnect->setObjectName("PB_Disconnect");
         PB_Disconnect->setStyleSheet(QString::fromUtf8("font: 700 11pt \"Segoe UI\";\n"
 "background-color: rgb(121, 0, 0);\n"
@@ -727,7 +727,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

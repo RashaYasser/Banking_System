@@ -17,10 +17,13 @@ public:
     static DataBaseManager& getInstance(); // Singleton instance access
 
     // Method to transfer amount between accounts
-    bool transferAmount(const QString &sender, const QString &recipient, double amount);
+    bool transferAmount(const QString &senderAccountNumber, const QString &recipientAccountNumber, const QString &amountStr);
+   // QJsonObject createTransaction(double amount, const QString &transactionType);
+
 
     // Method to get user details
     QJsonObject getUser(const QString &userName);
+    QString getUserEmail(const QString &accountNumber);
 
     // Method to get account number for a given username
     QString getAccountNumber(const QString &userName);

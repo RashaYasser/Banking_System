@@ -1,4 +1,3 @@
-/************final********/
 #ifndef MYCLIENT_H
 #define MYCLIENT_H
 
@@ -7,6 +6,9 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonDocument>
+
+#include "Encryption.h"
+#include "Signature.h"
 
 /**
  * Manages communication with a TCP server.
@@ -37,7 +39,9 @@ public:
      *
      * Sends the provided JSON data to the server.
      */
-    void sendData(const QJsonObject &data);
+   // void sendData(const QJsonObject &data);
+
+    void sendData(const QByteArray& data);
 
     /*
      * Description:
@@ -144,6 +148,7 @@ private:
     QString ip; //The IP address of the server to connect to.
     qint32 port; // The port number of the server to connect to.
     QTcpSocket socket; //The TCP socket used for communication.
+
 };
 
 #endif // MYCLIENT_H

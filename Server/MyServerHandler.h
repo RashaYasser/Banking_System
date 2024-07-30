@@ -7,7 +7,8 @@
 #include <QJsonObject>
 #include "DataBaseManager.h"
 #include "RequestHandler.h"
-
+#include "Signature.h"
+#include"Encryption.h"
 class MyServerHandler : public QThread
 {
     Q_OBJECT
@@ -30,6 +31,8 @@ public:
     // - action: QString describing the action or type of request.
     // - request: QJsonObject containing the details of the request to log.
     void logRequest(const QString &action, const QJsonObject &request);
+    void sendEmail(const QString& toEmail, const QString& subject, const QString& body);
+
 
 private:
     int id;

@@ -12,8 +12,8 @@
             "AccountNumber": "1002",
             "Age": 21,
             "Authentication": "User",
-            "Balance": "2850.00",
-            "Email": "rasha.yasser@gmail.com",
+            "Balance": "998770.00",
+            "Email": "rasha81199@gmail.com",
             "FullName": "Rasha Yasser",
             "Password": "pass123",
             "PhoneNumber": "01155559810",
@@ -79,71 +79,112 @@
                     "TransactionType": "Withdrawal"
                 },
                 {
-                    "Amount": "90",
-                    "Timestamp": "Mon Jul 22 11:16:22 2024",
+                    "Amount": 50,
+                    "Timestamp": "Sat Jul 27 20:37:09 2024",
                     "TransactionType": "Withdrawal"
                 },
                 {
-                    "Amount": "1000",
-                    "Timestamp": "Mon Jul 22 11:16:43 2024",
+                    "Amount": 100,
+                    "Timestamp": "Sat Jul 27 22:12:42 2024",
                     "TransactionType": "Withdrawal"
                 },
                 {
-                    "Amount": "50",
-                    "Timestamp": "Mon Jul 22 12:08:39 2024",
+                    "Amount": 100,
+                    "Timestamp": "Sat Jul 27 22:23:15 2024",
                     "TransactionType": "Withdrawal"
                 },
                 {
-                    "Amount": "100",
-                    "Timestamp": "Mon Jul 22 12:08:48 2024",
+                    "Amount": 50,
+                    "Timestamp": "Mon Jul 29 17:14:29 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 50,
+                    "Timestamp": "Mon Jul 29 17:14:44 2024",
+                    "TransactionType": "Deposit"
+                },
+                {
+                    "Amount": 10,
+                    "Timestamp": "Tue Jul 30 03:38:58 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 96,
+                    "Timestamp": "Tue Jul 30 03:59:40 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 95,
+                    "Timestamp": "Tue Jul 30 04:16:43 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 195,
+                    "Timestamp": "Tue Jul 30 04:17:54 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 5,
+                    "Timestamp": "Tue Jul 30 04:27:18 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 95,
+                    "Timestamp": "Tue Jul 30 04:31:01 2024",
+                    "TransactionType": "Deposit"
+                },
+                {
+                    "Amount": 222,
+                    "Timestamp": "Tue Jul 30 04:52:33 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 788,
+                    "Timestamp": "Tue Jul 30 04:53:04 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 90,
+                    "Timestamp": "Tue Jul 30 04:54:01 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 50,
+                    "Timestamp": "Tue Jul 30 14:13:54 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 100,
+                    "Timestamp": "Tue Jul 30 14:14:22 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 50,
+                    "Timestamp": "Tue Jul 30 15:27:06 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 10,
+                    "Timestamp": "Tue Jul 30 15:27:50 2024",
+                    "TransactionType": "Withdrawal"
+                },
+                {
+                    "Amount": 80,
+                    "Timestamp": "Tue Jul 30 15:28:02 2024",
                     "TransactionType": "Deposit"
                 }
             ],
             "UserName": "rasha"
         },
         {
-            "AccountNumber": "1003",
-            "Age": 30,
+            "AccountNumber": "1004",
             "Authentication": "User",
-            "Balance": "8810.00",
-            "Email": "asha@gmail.com",
-            "FullName": "Asha",
-            "Password": "123456",
-            "PhoneNumber": "0123456789",
-            "TransactionHistory": [
-                {
-                    "Amount": 200,
-                    "Timestamp": "Mon Jul 15 14:45:00 2024",
-                    "TransactionType": "Deposit"
-                },
-                {
-                    "Amount": 500,
-                    "Timestamp": "Mon Jul 15 15:00:00 2024",
-                    "TransactionType": "Withdrawal"
-                },
-                {
-                    "Amount": 900,
-                    "Timestamp": "Sat Jul 20 15:31:17 2024",
-                    "TransactionType": "Deposit"
-                },
-                {
-                    "Amount": 90,
-                    "Timestamp": "Sat Jul 20 18:20:27 2024",
-                    "TransactionType": "Withdrawal"
-                }
-            ],
-            "UserName": "rashayasser"
-        },
-        {
-            "AccountNumber": "10001",
-            "Age": 25,
-            "Authentication": "User",
-            "Balance": "0.00",
-            "Email": "aasada@gmail.com",
-            "FullName": "Ahmed Mohamed",
-            "Password": "123456",
-            "PhoneNumber": "012455525",
-            "UserName": "ahmed"
+            "Balance": "225.00",
+            "Email": "sdzc",
+            "FullName": "Mohamed ahmemf",
+            "Password": "dfvgfd",
+            "PhoneNumber": "02323",
+            "UserName": "sdfxsd"
         }
     ]
 }

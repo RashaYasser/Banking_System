@@ -36,7 +36,6 @@ void MainWindow::on_Pb_Start_clicked()
 
 void MainWindow::setupConnections()
 {
-
     // Connect button clicks to respective slots
     connect(ui->PB_Login, &QPushButton::clicked, this, &MainWindow::onLogin);
     connect(ui->PB_createNewUser, &QPushButton::clicked, this, &MainWindow::createNewUser);
@@ -84,6 +83,10 @@ void MainWindow::on_PB_Connect_clicked()
     QString ip = ui->lE_IP->text(); // Get IP address from the UI
     qint32 port = ui->LE_Port->text().toInt(); // Get port number from the UI
     client.ConnectToDevice(ip, port); // Connect to the specified IP and port
+
+
+     ui->lE_IP->clear();
+     ui->LE_Port->clear();
 }
 
 // Slot to handle disconnect button click
@@ -93,8 +96,6 @@ void MainWindow::on_PB_Disconnect_clicked()
 
 }
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::handleResponse(const QJsonObject &response)
 {
 
@@ -106,24 +107,47 @@ void MainWindow::handleResponse(const QJsonObject &response)
 // Slot to handle login button click
 void MainWindow::onLogin()
 {
+    // Retrieve the username from the user input field
     QString username = ui->LE_userName->text(); // Get the username from the input field
+
+    // Retrieve the password from the user input field
     QString password = ui->LE_password->text(); // Get the password from the input field
 
-    // Create a validator for the login request
+    // Create a validator instance to check the login request details
     LoginRequestValidate validator(username, password);
+
+    // Validate the username and password
     if (!validator.validate())
-    {        // Optionally, show a message box or status label to inform the user
-        QMessageBox::warning(this, "Validation Error", "Please enter username and password.");
-        return;
+    {
+        // Show a warning message if the validation fails
+        QMessageBox::warning(this, "Validation Error", "Please enter both username and password.");
+        return; // Exit the function if validation fails
     }
 
-    // Create a login request object
+    // Create a login request object with the provided username and password
     LoginRequest loginRequest(username, password);
-    // Convert the login request to QJsonObject
+
+    // Convert the login request object to a QJsonObject for serialization
     QJsonObject request = loginRequest.toJson();
 
-    // Send the request to the server
-    client.sendData(request);
+    // Define encryption and signature keys (ensure these are securely managed)
+    const QString encryptionKey = "SecretEncryptionKey"; // Encryption key for securing data
+    const QString signatureKey = "SecretSignatureKey";   // Signature key for data integrity
+
+    // Encrypt the JSON request data using the encryption key
+    QByteArray encryptedData = Encryption::encrypt(request, encryptionKey);
+
+    // Generate a signature for the encrypted data using the signature key
+    QByteArray signature = Signature::sign(encryptedData, signatureKey);
+
+    // Combine the encrypted data with the signature
+    QByteArray finalData = encryptedData + signature;
+
+    // Send the final encrypted and signed data to the server
+    client.sendData(finalData);
+    // Clear the input fields after successful login
+    ui->LE_userName->clear(); // Clear the username field
+    ui->LE_password->clear(); // Clear the password field
 }
 
 // Slot to handle Create a New user
@@ -135,8 +159,8 @@ void MainWindow::createNewUser()
     QString password = ui->LE_newPassword->text();
     QString balance = ui->LE_initialBalance->text();
     QString phoneNumber = ui->LE_phoneNumber->text();
-    QString email = ui->LE_userEmail->text();
-    QString usertype = ui->LE_authentication->text();
+    QString email = ui->LE_userEmail->text();        
+    QString usertype = ui->comboBox_2->currentText();
 
     // Check if current user is an admin
     if (isAdmin())
@@ -153,8 +177,34 @@ void MainWindow::createNewUser()
             return;
         }
 
-        // Convert the request to JSON and send it to the server
-        client.sendData(createNewUserRequest.toJson());
+        // Convert the request to JSON
+        QJsonObject requestJson = createNewUserRequest.toJson();
+
+        // Define encryption and signature keys (ensure these are securely managed)
+        const QString encryptionKey = "SecretEncryptionKey"; // Encryption key for securing data
+        const QString signatureKey = "SecretSignatureKey";   // Signature key for data integrity
+
+
+        // Encrypt the JSON request data using the encryption key
+        QByteArray encryptedData = Encryption::encrypt(requestJson, encryptionKey);
+
+        // Generate a signature for the encrypted data using the signature key
+        QByteArray signature = Signature::sign(encryptedData, signatureKey);
+
+        // Combine the encrypted data with the signature
+        QByteArray finalData = encryptedData + signature;
+
+        // Send the final encrypted and signed data to the server
+        client.sendData(finalData);
+
+        ui->LE_newFullName->clear();
+        ui->LE_newPassword->clear();
+        ui->LE_newUsername->clear();
+        ui->LE_initialBalance->clear();
+        ui->LE_phoneNumber->clear();
+        ui->LE_userAge->clear();
+        ui->LE_userEmail->clear();
+
     }
     else
     {
@@ -177,7 +227,7 @@ void MainWindow::updateUser()
         // Create the request object
         UpdateUserRequest updateUserRequest(accountNumber, newPassword, username, newEmail, newPhoneNumber);
 
-        // // Validate the request
+        // Validate the request
         // UpdateUserRequestValidate validator(accountNumber);
         // if (!validator.validate())
         // {
@@ -185,8 +235,32 @@ void MainWindow::updateUser()
         //     return;
         // }
 
-        // Convert the request to JSON and send it to the server
-        client.sendData(updateUserRequest.toJson());
+        // Convert the request to JSON
+        QJsonObject requestJson = updateUserRequest.toJson();
+
+        // Define encryption and signature keys
+        // Define encryption and signature keys (ensure these are securely managed)
+        const QString encryptionKey = "SecretEncryptionKey"; // Encryption key for securing data
+        const QString signatureKey = "SecretSignatureKey";   // Signature key for data integrity
+
+        // Encrypt the JSON request data using the encryption key
+        QByteArray encryptedData = Encryption::encrypt(requestJson, encryptionKey);
+
+        // Generate a signature for the encrypted data using the signature key
+        QByteArray signature = Signature::sign(encryptedData, signatureKey);
+
+        // Combine the encrypted data with the signature
+        QByteArray finalData = encryptedData + signature;
+
+        // Send the final encrypted and signed data to the server
+        client.sendData(finalData);
+
+        ui->LE_updateAccountNumber->clear();
+        ui->LE_updateUsername->clear();
+        ui->LE_updateUserEmail->clear();
+        ui->LE_updatePhoneNum->clear();
+        ui->LE_updatePassword->clear();
+
     }
     else
     {
@@ -214,15 +288,34 @@ void MainWindow::deleteUser()
             return;
         }
 
-        // Convert the request to JSON and send it to the server
-        client.sendData(deleteUserRequest.toJson());
+        // Convert the request to JSON
+        QJsonObject requestJson = deleteUserRequest.toJson();
+
+        // Define encryption and signature keys
+        // Define encryption and signature keys (ensure these are securely managed)
+        const QString encryptionKey = "SecretEncryptionKey"; // Encryption key for securing data
+        const QString signatureKey = "SecretSignatureKey";   // Signature key for data integrity
+
+
+        // Encrypt the JSON request data using the encryption key
+        QByteArray encryptedData = Encryption::encrypt(requestJson, encryptionKey);
+
+        // Generate a signature for the encrypted data using the signature key
+        QByteArray signature = Signature::sign(encryptedData, signatureKey);
+
+        // Combine the encrypted data with the signature
+        QByteArray finalData = encryptedData + signature;
+
+        // Send the final encrypted and signed data to the server
+        client.sendData(finalData);
+        ui->LE_deleteUserAccountNumber->clear();
+
     }
     else
     {
         QMessageBox::warning(this, "Access Denied", "Only Administrators can delete users.");
     }
 }
-
 
 void MainWindow::viewBalance()
 {
@@ -232,64 +325,98 @@ void MainWindow::viewBalance()
     ViewBalanceRequest viewBalanceRequest(accountNumber, currentUser);
 
     // Validate the request
-    ViewBalanceRequestValidate validator(accountNumber,currentAccountNumber);
+    ViewBalanceRequestValidate validator(accountNumber, currentAccountNumber);
     if (!validator.validate())
     {
         QMessageBox::warning(this, "Validation Error", "Please Enter Your account number.");
         return;
     }
 
-    // Convert the request to JSON and send it to the server
-    client.sendData(viewBalanceRequest.toJson());
+    // Convert the request to JSON
+    QJsonObject requestJson = viewBalanceRequest.toJson();
+
+    // Define encryption and signature keys
+    // Define encryption and signature keys (ensure these are securely managed)
+    const QString encryptionKey = "SecretEncryptionKey"; // Encryption key for securing data
+    const QString signatureKey = "SecretSignatureKey";   // Signature key for data integrity
+
+
+    // Encrypt the JSON request data using the encryption key
+    QByteArray encryptedData = Encryption::encrypt(requestJson, encryptionKey);
+
+    // Generate a signature for the encrypted data using the signature key
+    QByteArray signature = Signature::sign(encryptedData, signatureKey);
+
+    // Combine the encrypted data with the signature
+    QByteArray finalData = encryptedData + signature;
+
+    // Send the final encrypted and signed data to the server
+    client.sendData(finalData);
+    ui->LE_accountNumber_8->clear();
+
 }
 
 void MainWindow::viewTransactionHistory()
 {
-        QString accountNumber = ui->LE_transactionAccountNumber->text();
-        QString username = ui->LE_adminUserName1->text();
-        ViewTransactionHistoryRequestValidate validator(accountNumber);
+    QString accountNumber = ui->LE_transactionAccountNumber->text();
+    QString username = ui->LE_adminUserName1->text();
+    ViewTransactionHistoryRequestValidate validator(accountNumber);
 
-        if (!validator.validate())
+    if (!validator.validate())
+    {
+        // Handle validation failure
+        QMessageBox::warning(this, "Validation Error", "Please enter Your Account Number.");
+        return;
+    }
+
+    // Create the request object
+    ViewTransactionHistoryRequest viewTransactionHistoryRequest(accountNumber, username);
+    QJsonObject requestData = viewTransactionHistoryRequest.toJson();
+
+    // Define encryption and signature keys
+    // Define encryption and signature keys (ensure these are securely managed)
+    const QString encryptionKey = "SecretEncryptionKey"; // Encryption key for securing data
+    const QString signatureKey = "SecretSignatureKey";   // Signature key for data integrity
+
+
+    if (isAdmin())
+    {
+        if (username.isEmpty())
         {
-            // Handle validation failure
-            QMessageBox::warning(this, "Validation Error", "Please enter Your Account Number .");
+            QMessageBox::warning(this, "Input Error", "Please enter your username.");
             return;
         }
-
-        if (isAdmin())
+        if (username != currentUser)
         {
-            if (username.isEmpty())
-            {
-                QMessageBox::warning(this, "Input Error", "Please enter your username.");
-                return;
-            }
-
-            // Create the request object
-            ViewTransactionHistoryRequest viewTransactionHistoryRequest(accountNumber, username);
-            // Convert the request to JSON and send it to the server
-            QJsonObject requestData = viewTransactionHistoryRequest.toJson();
-            requestData["AdminUsername"] = currentUser; // Admin's current username
-            client.sendData(requestData);
+            QMessageBox::warning(this, "Input Error", "Please Make Sure Enter Your username..!");
+            return;
         }
-        else
+        // Add admin's username to the request
+        requestData["AdminUsername"] = currentUser;
+    }
+    else
+    {
+        if(accountNumber != currentAccountNumber)
         {
-
-            if(accountNumber == currentAccountNumber)
-            {
-
-                // Create the request object
-                ViewTransactionHistoryRequest viewTransactionHistoryRequest(accountNumber, username);
-                client.sendData( viewTransactionHistoryRequest.toJson());
-
-            }
-            else
-            {
-                QMessageBox::warning(this, "Validation Error", "Please enter Your Account Number .");
-                return;
-            }
+            QMessageBox::warning(this, "Validation Error", "Please enter Your Account Number.");
+            return;
         }
+    }
 
+    // Encrypt the JSON request data using the encryption key
+    QByteArray encryptedData = Encryption::encrypt(requestData, encryptionKey);
 
+    // Generate a signature for the encrypted data using the signature key
+    QByteArray signature = Signature::sign(encryptedData, signatureKey);
+
+    // Combine the encrypted data with the signature
+    QByteArray finalData = encryptedData + signature;
+
+    // Send the final encrypted and signed data to the server
+    client.sendData(finalData);
+
+     ui->LE_transactionAccountNumber->clear();
+    ui->LE_adminUserName1->clear();
 }
 
 void MainWindow::viewAccountDetails()
@@ -301,9 +428,17 @@ void MainWindow::viewAccountDetails()
     if (!validator.validate())
     {
         // Handle validation failure
-        QMessageBox::warning(this, "Validation Error", "Please enter Your Account Number .");
+        QMessageBox::warning(this, "Validation Error", "Please enter Your Account Number.");
         return;
     }
+
+    QJsonObject requestData = ViewAccountDetailsRequest(accountNumber).toJson();
+
+    // Define encryption and signature keys
+    // Define encryption and signature keys (ensure these are securely managed)
+    const QString encryptionKey = "SecretEncryptionKey"; // Encryption key for securing data
+    const QString signatureKey = "SecretSignatureKey";   // Signature key for data integrity
+
 
     if (isAdmin())
     {
@@ -313,18 +448,33 @@ void MainWindow::viewAccountDetails()
             QMessageBox::warning(this, "Input Error", "Please enter your username.");
             return;
         }
-        QJsonObject requestData = ViewAccountDetailsRequest (accountNumber).toJson();
+        if (username != currentUser)
+        {
+            QMessageBox::warning(this, "Input Error", "Please Make Sure Enter Your username..!");
+            return;
+        }
         requestData["AdminUsername"] = currentUser; // Admin's current username
-        client.sendData(requestData);
     }
     else
     {
         // Non-admin user can only view their own account details
-        // Create the request object
-        QJsonObject requestData = ViewAccountDetailsRequest(accountNumber).toJson();
         requestData["UserName"] = currentUser; // Fetch details for current logged-in user
-        client.sendData(requestData);
     }
+
+    // Encrypt the JSON request data using the encryption key
+    QByteArray encryptedData = Encryption::encrypt(requestData, encryptionKey);
+
+    // Generate a signature for the encrypted data using the signature key
+    QByteArray signature = Signature::sign(encryptedData, signatureKey);
+
+    // Combine the encrypted data with the signature
+    QByteArray finalData = encryptedData + signature;
+
+    // Send the final encrypted and signed data to the server
+    client.sendData(finalData);
+
+    ui->LE_accountNumberViewD->clear(); // Assuming input for account number
+    ui->LE_adminUserName->clear(); // Input for admin's own username
 }
 
 void MainWindow::viewBankDatabase()
@@ -333,15 +483,36 @@ void MainWindow::viewBankDatabase()
     {
         // Create the request object
         ViewBankDatabaseRequest viewBankDatabaseRequest("Admin");
-        // Convert the request to JSON and send it to the server
-        client.sendData(viewBankDatabaseRequest.toJson());
+
+        // Convert the request to JSON
+        QJsonObject requestJson = viewBankDatabaseRequest.toJson();
+
+        // Define encryption and signature keys
+        // Define encryption and signature keys (ensure these are securely managed)
+        const QString encryptionKey = "SecretEncryptionKey"; // Encryption key for securing data
+        const QString signatureKey = "SecretSignatureKey";   // Signature key for data integrity
+
+
+        // Encrypt the JSON request data using the encryption key
+        QByteArray encryptedData = Encryption::encrypt(requestJson, encryptionKey);
+
+        // Generate a signature for the encrypted data using the signature key
+        QByteArray signature = Signature::sign(encryptedData, signatureKey);
+
+        // Combine the encrypted data with the signature
+        QByteArray finalData = encryptedData + signature;
+
+        // Send the final encrypted and signed data to the server
+        client.sendData(finalData);
     }
     else
     {
         QMessageBox::warning(this, "Access Denied", "Only Administrators can view the bank database.");
     }
-}
 
+    ui->LE_accountNumberViewD->clear(); // Assuming input for account number
+    ui->LE_adminUserName->clear(); // Input for admin's own username
+}
 
 void MainWindow::makeTransaction()
 {
@@ -349,35 +520,65 @@ void MainWindow::makeTransaction()
     QString accountNumber = ui->LE_accountNumber2_8->text();
     QString action = ui->CB_transactionType_8->currentText();
     QString currentAccountnum = currentAccountNumber; // Assuming you have this variable in your class
-
+    if (accountNumber != currentAccountNumber)
+    {
+        QMessageBox::warning(this, "Error", "Please Enter Your Account Number..!");
+        return;
+    }
     // Create the request object
     MakeTransactionRequest makeTransactionRequest(action, accountNumber, currentUser, amount);
 
     // Validate the request
-    MakeTransactionRequestValidate validator(accountNumber,amount,action,currentAccountnum);
+    MakeTransactionRequestValidate validator(accountNumber, amount, action, currentAccountnum);
     if (!validator.validate())
     {
-        QMessageBox::warning(this, "Validation Error", "Please enter valid transaction details.");
+        QMessageBox::warning(this, "Validation Error", "Please Enter valid transaction details.");
         return;
     }
 
-    // Convert the request to JSON and send it to the server
-    client.sendData(makeTransactionRequest.toJson());
-    //logTransaction(action, accountNumber, amount);
-}
+    // Convert the request to JSON
+    QJsonObject requestJson = makeTransactionRequest.toJson();
 
+    // Define encryption and signature keys
+    // Define encryption and signature keys (ensure these are securely managed)
+    const QString encryptionKey = "SecretEncryptionKey"; // Encryption key for securing data
+    const QString signatureKey = "SecretSignatureKey";   // Signature key for data integrity
+
+
+    // Encrypt the JSON request data using the encryption key
+    QByteArray encryptedData = Encryption::encrypt(requestJson, encryptionKey);
+
+    // Generate a signature for the encrypted data using the signature key
+    QByteArray signature = Signature::sign(encryptedData, signatureKey);
+
+    // Combine the encrypted data with the signature
+    QByteArray finalData = encryptedData + signature;
+
+    // Send the final encrypted and signed data to the server
+    client.sendData(finalData);
+    // logTransaction(action, accountNumber, amount);
+
+
+    ui->LE_transactionAmount_8->clear();
+    ui->LE_accountNumber2_8->clear();
+    ui->CB_transactionType_8->currentText().clear();
+}
 
 void MainWindow::transferAmount()
 {
     QString fromAccountNumber = ui->LE_fromAccount_8->text();
     QString toAccountNumber = ui->LE_toAccount_8->text();
     QString amount = ui->LE_transferAmount_8->text();
-
+    if (fromAccountNumber != currentAccountNumber)
+    {
+        QMessageBox::warning(this, "Error", "Please Enter Your Account Number In first Field.");
+        return;
+    }
     // Create the request object
-    TransferAmountRequest transferAmountRequest(fromAccountNumber, toAccountNumber, amount.toDouble());
+    TransferAmountRequest transferAmountRequest(fromAccountNumber, toAccountNumber, amount);
 
     // Validate the request
-    TransferAmountRequestValidate validator(fromAccountNumber,toAccountNumber,amount);
+    TransferAmountRequestValidate validator(fromAccountNumber, toAccountNumber, amount);
     if (!validator.validate())
     {
         qDebug() << "Transfer amount validation failed";
@@ -385,12 +586,43 @@ void MainWindow::transferAmount()
         return;
     }
 
-    // Convert the request to JSON and send it to the server
-    client.sendData(transferAmountRequest.toJson());
+    // Convert the request to JSON
+    QJsonObject requestJson = transferAmountRequest.toJson();
 
-    //logTransfer(fromAccountNumber, toAccountNumber, amount);
+    // Define encryption and signature keys
+    // Define encryption and signature keys (ensure these are securely managed)
+    const QString encryptionKey = "SecretEncryptionKey"; // Encryption key for securing data
+    const QString signatureKey = "SecretSignatureKey";   // Signature key for data integrity
+
+    // Encrypt the JSON request data using the encryption key
+    QByteArray encryptedData = Encryption::encrypt(requestJson, encryptionKey);
+
+    // Generate a signature for the encrypted data using the signature key
+    QByteArray signature = Signature::sign(encryptedData, signatureKey);
+
+    // Combine the encrypted data with the signature
+    QByteArray finalData = encryptedData + signature;
+
+    // Send the final encrypted and signed data to the server
+    client.sendData(finalData);
+    ui->LE_fromAccount_8->clear();
+    ui->LE_toAccount_8->clear();
+    ui->LE_transferAmount_8->clear();
+
+    logTransfer(fromAccountNumber, toAccountNumber, amount);
 }
 
+void MainWindow::logTransfer(const QString &fromAccountNumber, const QString &toAccountNumber, const QString &amount)
+{
+    // Log a transfer
+    QString timestamp = QDateTime::currentDateTime().toString();
+    QString logMessage = QString("\nTransfer from: %1\nTo: %2\nAmount: %3\nDate: [%4]\n")
+                             .arg(fromAccountNumber)
+                             .arg(toAccountNumber)
+                             .arg(amount)
+                             .arg(timestamp);
+    ui->Lw_User_3->addItem(logMessage);
+}
 
 void MainWindow::getAccountNumberAdmin()
 {
@@ -401,15 +633,34 @@ void MainWindow::getAccountNumberAdmin()
         // Create the request object
         GetAccountNumberAdminRequest getAccountNumberAdminRequest(username);
 
-        // Convert the request to JSON and send it to the server
-        client.sendData(getAccountNumberAdminRequest.toJson());
+        // Convert the request to JSON
+        QJsonObject requestJson = getAccountNumberAdminRequest.toJson();
+
+        // Define encryption and signature keys
+        // Define encryption and signature keys (ensure these are securely managed)
+        const QString encryptionKey = "SecretEncryptionKey"; // Encryption key for securing data
+        const QString signatureKey = "SecretSignatureKey";   // Signature key for data integrity
+
+
+        // Encrypt the JSON request data using the encryption key
+        QByteArray encryptedData = Encryption::encrypt(requestJson, encryptionKey);
+
+        // Generate a signature for the encrypted data using the signature key
+        QByteArray signature = Signature::sign(encryptedData, signatureKey);
+
+        // Combine the encrypted data with the signature
+        QByteArray finalData = encryptedData + signature;
+
+        // Send the final encrypted and signed data to the server
+        client.sendData(finalData);
+        ui->LE_usernameAccNum->clear();
+
     }
     else
     {
         QMessageBox::warning(this, "Access Denied", "Only Administrators can view the bank database.");
     }
 }
-
 
 void MainWindow::getAccountNumberUser()
 {
@@ -421,32 +672,36 @@ void MainWindow::getAccountNumberUser()
     GetAccountNumberUserRequest getAccountNumberUserRequest(username);
 
     // Validate the request
-    GetAccountNumberRequestValidate validator(username,currentUserName);
+    GetAccountNumberRequestValidate validator(username, currentUserName);
     if (!validator.validate())
     {
-        QMessageBox::warning(this, "Validation Error", "Please enter a Your username.");
+        QMessageBox::warning(this, "Validation Error", "Please enter Your username.");
         return;
     }
 
-    // Convert the request to JSON and send it to the server
+    // Convert the request to JSON
+    QJsonObject requestJson = getAccountNumberUserRequest.toJson();
 
-    client.sendData(getAccountNumberUserRequest.toJson());
+    // Define encryption and signature keys
+    // Define encryption and signature keys (ensure these are securely managed)
+    const QString encryptionKey = "SecretEncryptionKey"; // Encryption key for securing data
+    const QString signatureKey = "SecretSignatureKey";   // Signature key for data integrity
+
+    // Encrypt the JSON request data using the encryption key
+    QByteArray encryptedData = Encryption::encrypt(requestJson, encryptionKey);
+
+    // Generate a signature for the encrypted data using the signature key
+    QByteArray signature = Signature::sign(encryptedData, signatureKey);
+
+    // Combine the encrypted data with the signature
+    QByteArray finalData = encryptedData + signature;
+
+    // Send the final encrypted and signed data to the server
+    client.sendData(finalData);
+    ui->LE_usernameForAccountNumber_8->clear();
+
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /************************ Functions to display a general response from the serve ***********************************/
 
@@ -517,12 +772,6 @@ void MainWindow::displayAdminAccountNumber(const QJsonObject &response)
     }
 }
 
-/**
- * @brief Displays the balance of an account.
- * @param response The JSON response from the server containing account balance details.
- *
- * This method updates the user interface to show the balance of an account.
- */
 void MainWindow::displayBalance(const QJsonObject &response)
 {
     QString status = response["Status"].toString(); // Get the result from the response
@@ -578,8 +827,8 @@ void MainWindow::displayTransactionHistory(const QJsonObject &response)
             QJsonObject transaction = value.toObject();
             // Format the transaction details into a QString with new lines
             QString item = QString("Action: %1\nAmount: %2\nTimestamp: %3\n")
-                               .arg(transaction["Action"].toString())  // Get the action of the transaction (e.g., Deposit, Withdrawal)
-                               .arg(transaction["Amount"].toString())  // Get the amount of the transaction
+                               .arg(transaction["TransactionType"].toString())  // Get the action of the transaction (e.g., Deposit, Withdrawal)
+                               .arg(transaction["Amount"].toDouble())  // Get the amount of the transaction
                                .arg(transaction["Timestamp"].toString());  // Get the timestamp of the transaction
 
             // Add the formatted transaction details to the UI list widget
@@ -701,7 +950,6 @@ void MainWindow::displayUserOperationResult(const QJsonObject &response)
     }
 }
 
-
 // Check if current user is admin
 bool MainWindow::isAdmin() const
 {
@@ -753,7 +1001,6 @@ void MainWindow::on_comboBox_2_activated(int index)
     switch (index)
     {
     case 0:
-        ui->LE_authentication->setEnabled(false);
         ui->LE_newPassword->setEnabled(false);
         ui->LE_newFullName->setEnabled(false);
         ui->LE_newUsername->setEnabled(false);
@@ -763,7 +1010,6 @@ void MainWindow::on_comboBox_2_activated(int index)
         ui->LE_phoneNumber->setEnabled(false);
         break;
     case 1:
-        ui->LE_authentication->setEnabled(true);
         ui->LE_newFullName->setEnabled(true);
         ui->LE_newUsername->setEnabled(true);
         ui->LE_newPassword->setEnabled(true);
@@ -774,7 +1020,6 @@ void MainWindow::on_comboBox_2_activated(int index)
 
         break;
     case 2:
-        ui->LE_authentication->setEnabled(true);
         ui->LE_newFullName->setEnabled(true);
         ui->LE_newUsername->setEnabled(true);
         ui->LE_newPassword->setEnabled(true);
@@ -898,13 +1143,6 @@ void MainWindow::on_PB_ClearLwAccDetails_clicked()
     ui->Lw_AccountDetails->clear();
 
 }
-
-//clear Admin list Widget
-/**
- * @brief Slot called when the Push Button is clicked.
- *
- * This slot handles operations related to the Push Button when it is pressed.
- */
 void MainWindow::on_pushButton_clicked()
 {
     ui->LW_admin->clear();

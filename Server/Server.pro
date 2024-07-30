@@ -8,10 +8,12 @@ CONFIG += c++17 cmdline
 
 SOURCES += \
         DataBaseManager.cpp \
+        Encryption.cpp \
         Memento.cpp \
         MyServer.cpp \
         MyServerHandler.cpp \
         RequestHandler.cpp \
+        Signature.cpp \
         main.cpp
 
 # Default rules for deployment.
@@ -21,7 +23,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     DataBaseManager.h \
+    Encryption.h \
     Memento.h \
     MyServer.h \
     MyServerHandler.h \
-    RequestHandler.h
+    RequestHandler.h \
+    Signature.h
