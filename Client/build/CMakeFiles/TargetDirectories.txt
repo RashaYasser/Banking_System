@@ -1,0 +1,12 @@
+E:/ITIDA_FINAL_PROJECT3/Client/build/CMakeFiles/mylib.dir
+E:/ITIDA_FINAL_PROJECT3/Client/build/CMakeFiles/Client.dir
+E:/ITIDA_FINAL_PROJECT3/Client/build/CMakeFiles/edit_cache.dir
+E:/ITIDA_FINAL_PROJECT3/Client/build/CMakeFiles/rebuild_cache.dir
+E:/ITIDA_FINAL_PROJECT3/Client/build/CMakeFiles/list_install_components.dir
+E:/ITIDA_FINAL_PROJECT3/Client/build/CMakeFiles/install.dir
+E:/ITIDA_FINAL_PROJECT3/Client/build/CMakeFiles/install/local.dir
+E:/ITIDA_FINAL_PROJECT3/Client/build/CMakeFiles/install/strip.dir
+E:/ITIDA_FINAL_PROJECT3/Client/build/CMakeFiles/mylib_autogen_timestamp_deps.dir
+E:/ITIDA_FINAL_PROJECT3/Client/build/CMakeFiles/mylib_autogen.dir
+E:/ITIDA_FINAL_PROJECT3/Client/build/CMakeFiles/Client_autogen_timestamp_deps.dir
+E:/ITIDA_FINAL_PROJECT3/Client/build/CMakeFiles/Client_autogen.dir

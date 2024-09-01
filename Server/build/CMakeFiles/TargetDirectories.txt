@@ -1,0 +1,9 @@
+E:/ITIDA_FINAL_PROJECT3/Server/build/CMakeFiles/Server.dir
+E:/ITIDA_FINAL_PROJECT3/Server/build/CMakeFiles/edit_cache.dir
+E:/ITIDA_FINAL_PROJECT3/Server/build/CMakeFiles/rebuild_cache.dir
+E:/ITIDA_FINAL_PROJECT3/Server/build/CMakeFiles/list_install_components.dir
+E:/ITIDA_FINAL_PROJECT3/Server/build/CMakeFiles/install.dir
+E:/ITIDA_FINAL_PROJECT3/Server/build/CMakeFiles/install/local.dir
+E:/ITIDA_FINAL_PROJECT3/Server/build/CMakeFiles/install/strip.dir
+E:/ITIDA_FINAL_PROJECT3/Server/build/CMakeFiles/Server_autogen_timestamp_deps.dir
+E:/ITIDA_FINAL_PROJECT3/Server/build/CMakeFiles/Server_autogen.dir
