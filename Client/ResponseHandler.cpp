@@ -1,5 +1,5 @@
 #include "ResponseHandler.h"
-#include "MainWindow.h"
+#include "mainwindow.h"
 
 ResponseHandler::ResponseHandler(MainWindow *mainWindow, QObject *parent)
     : QObject(parent), m_mainWindow(mainWindow)

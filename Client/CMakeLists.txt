@@ -15,14 +15,10 @@ set(CMAKE_AUTORCC ON)  # Automatically process Qt resource files
 
 # Find and configure the required Qt packages for the project
 find_package(Qt6 REQUIRED COMPONENTS Core Network Widgets)
-# Include Qt directories
-include_directories(${Qt6Core_INCLUDE_DIRS})
-include_directories(${Qt6Widgets_INCLUDE_DIRS})
-include_directories(${Qt6Network_INCLUDE_DIRS})
 
 # Define the source files for the library target
 set(LIB_SOURCES
-    MainWindow.cpp
+    mainwindow.cpp
     MyClient.cpp
     CreateNewUserRequest.cpp
     DeleteUserRequest.cpp
@@ -47,7 +43,7 @@ set(SOURCES main.cpp)
 
 # Define the header files that require MOC processing
 set(HEADERS
-    MainWindow.h
+    mainwindow.h
     MyClient.h
     CreateNewUserRequest.h
     DeleteUserRequest.h
@@ -97,4 +93,3 @@ install(TARGETS Client
 install(TARGETS mylib
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}  # Installation directory for libraries
 )
-
