@@ -5,10 +5,12 @@
 #include <QTcpSocket>
 #include <QThread>
 #include <QJsonObject>
+
 #include "DataBaseManager.h"
 #include "RequestHandler.h"
 #include "Signature.h"
 #include"Encryption.h"
+
 class MyServerHandler : public QThread
 {
     Q_OBJECT

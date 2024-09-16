@@ -56,19 +56,13 @@ void MyServerHandler::logRequest(const QString &action, const QJsonObject &reque
                            .arg(QString(QJsonDocument(request).toJson(QJsonDocument::Compact)))
                            .arg(timestamp.toString(Qt::ISODate));
 
-
-/*
-    QString logEntry = QString("Action:[%1]\n Request:%2\n, Date: %3\n") // Format the log entry
-                           .arg(action) // Add the action
-                           .arg(QString(QJsonDocument(request).toJson(QJsonDocument::Compact)))
-                           .arg(timestamp.toString(Qt::ISODate)); */// Add the timestamp
     out << logEntry; // Write the log entry to the file
     logFile.close(); // Close the file
 }
 
 void MyServerHandler::run()
 {
-    qDebug()<<"Client "<< id <<" Is Running On Thread => "<<QThread::currentThreadId()<<Qt::endl;
+    qDebug()<<"Client "<< id <<" Is Running On Thread => "<<QThread::currentThreadId()<< "\n";
     socket = new QTcpSocket;//initalize socket
     //how socket know the client ?
     socket->setSocketDescriptor(id);//set the id for this client
@@ -141,7 +135,7 @@ void MyServerHandler::onDisconnect()
     if(socket->isOpen())
     {
         socket->close();
-        qDebug()<<"Client "<<id<<"Has Disconnected..."<<Qt::endl;
+        qDebug()<<"Client "<<id<<"Has Disconnected...\n";
     }
 }
 

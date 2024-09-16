@@ -1,21 +1,6 @@
 # Set the minimum required version of CMake to ensure compatibility with the features used
 cmake_minimum_required(VERSION 3.14)  # Qt 6 often requires at least version 3.14
 
-# Define the name of the project and specify that the C++ language will be used
-project(Client LANGUAGES CXX)
-
-# Set the C++ standard to C++17 and enforce its usage
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# Enable automatic handling of Qt's UI, MOC (Meta-Object Compiler), and RCC (Resource) files
-set(CMAKE_AUTOUIC ON)  # Automatically process Qt UI files
-set(CMAKE_AUTOMOC ON)  # Automatically run MOC on header files
-set(CMAKE_AUTORCC ON)  # Automatically process Qt resource files
-
-# Find and configure the required Qt packages for the project
-find_package(Qt6 REQUIRED COMPONENTS Core Network Widgets)
-
 # Define the source files for the library target
 set(LIB_SOURCES
     mainwindow.cpp
@@ -69,9 +54,10 @@ add_library(mylib STATIC ${LIB_SOURCES})
 
 # Link Qt libraries to 'mylib'
 target_link_libraries(mylib
-    Qt6::Core
-    Qt6::Network
-    Qt6::Widgets
+    PUBLIC
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Network
+    Qt${QT_VERSION_MAJOR}::Widgets
 )
 
 # Create an executable target named 'Client' with the specified source files
@@ -79,9 +65,6 @@ add_executable(Client ${SOURCES} ${HEADERS})
 
 # Link the Qt libraries and the 'mylib' static library to the 'Client' executable
 target_link_libraries(Client
-    Qt6::Core
-    Qt6::Network
-    Qt6::Widgets
     mylib
 )
 

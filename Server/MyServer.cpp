@@ -17,15 +17,16 @@ void MyServer::startServer()
     //check if server is listen to port
     if(this->isListening())
     {
-        qout<<"The Server Is Up And Listening To Port => "<<port<<Qt::endl;
+        qout<<"The Server Is Up And Listening To Port => "<<port<< "\n";
         qout.flush();
     }
     else
     {
-        qout<<"The Server Cant't Listen To Port => "<<port<<Qt::endl;
+        qout<<"The Server Cant't Listen To Port => "<<port<< "\n";
         qout.flush();
     }
 }
+
 //slot call when server start
 void MyServer::incomingConnection(qintptr handle)//handle is a i=unique number for every client
 {

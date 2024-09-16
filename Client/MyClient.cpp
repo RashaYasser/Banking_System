@@ -1,5 +1,7 @@
 #include "MyClient.h"
 
+#include <QDebug>
+
 // Constructor: Initializes the MyClient object and sets up signal-slot connections.
 MyClient::MyClient(QObject *parent)
     : QObject{parent}
@@ -7,7 +9,14 @@ MyClient::MyClient(QObject *parent)
     // Connects the QTcpSocket signals to the corresponding slots in MyClient
     connect(&socket, &QTcpSocket::connected, this, &MyClient::onConnected);
     connect(&socket, &QTcpSocket::disconnected, this, &MyClient::onDisconnected);
+#if QT_VERSION < QT_VERSION_CHECK(5,15,0)
+    connect(&socket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),
+        [=](QAbstractSocket::SocketError socketError){
+          qDebug() << "ERROR: " << socketError << '\n';
+        });
+#else
     connect(&socket, &QTcpSocket::errorOccurred, this, &MyClient::onErrorOccurred);
+#endif
     connect(&socket, &QTcpSocket::stateChanged, this, &MyClient::onStateChanged);
     connect(&socket, &QTcpSocket::readyRead, this, &MyClient::onReadyRead);
 }
