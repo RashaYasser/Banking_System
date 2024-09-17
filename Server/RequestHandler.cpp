@@ -1,5 +1,8 @@
 #include"RequestHandler.h"
 #include "DataBaseManager.h"
+
+#include <QDebug>
+
 // Initializes the appropriate handler based on action
 ReceivedResponseHandler::ReceivedResponseHandler(const QString &action)
 {

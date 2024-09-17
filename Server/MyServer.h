@@ -5,7 +5,8 @@
 #include <QTcpServer>
 #include <QTextStream>
 #include <QDebug>
-#include <MyServerHandler.h>
+
+#include "MyServerHandler.h"
 
 // The MyServer class inherits from QTcpServer and is responsible for starting the server
 // and handling incoming connections from clients.

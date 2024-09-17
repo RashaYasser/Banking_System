@@ -1,3 +1,0 @@
-C:\winlibs-x86_64-posix-seh-gcc-13.2.0-llvm-17.0.6-mingw-w64ucrt-11.0.1-r5\mingw64\bin\cmake.exe -E rm -f CMakeFiles\Server.dir/objects.a
-C:\winlibs-x86_64-posix-seh-gcc-13.2.0-llvm-17.0.6-mingw-w64ucrt-11.0.1-r5\mingw64\bin\ar.exe qc CMakeFiles\Server.dir/objects.a @CMakeFiles\Server.dir\objects1.rsp
-C:\winlibs-x86_64-posix-seh-gcc-13.2.0-llvm-17.0.6-mingw-w64ucrt-11.0.1-r5\mingw64\bin\c++.exe -Wl,--whole-archive CMakeFiles\Server.dir/objects.a -Wl,--no-whole-archive -o Server.exe -Wl,--out-implib,libServer.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Server.dir\linkLibs.rsp

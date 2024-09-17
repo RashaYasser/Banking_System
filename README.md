@@ -135,9 +135,8 @@ This framework ensures a seamless and interactive user experience while enabling
 
 ### Prerequisites
 
-- Qt6
+- Qt6 (Widgets, Network, Json)
 - C++ compiler
-- JSON library
 - Git (optional, for version control)
 
 ### Steps
@@ -146,19 +145,29 @@ This framework ensures a seamless and interactive user experience while enabling
    ```bash
     git clone < repository-url>
     cd banking_system
+    ```
    
 2. Build the Project
-      ```bash
-     qmake
-     make
+   ```bash
+   qmake
+   make
+   ```
+   or
+   ```bash
+   cmake --preset=gnu_release
+   cd ../build/Release
+   ninja
+   ```
 
 3. Run the Server
-      ```bash
+   ```bash
    ./server.exe
+   ```
 
 4. Run the Client
-      ```bash
+   ```bash
    ./client.exe
+   ```
 
 
 ## Usage
@@ -228,10 +237,3 @@ Enter server port: 12356
     ![bankdp](https://github.com/user-attachments/assets/a25cc002-0f09-4929-9b55-90353fee4062)
  
     -only admin can see the database
-
-
-
-
-
-
-
